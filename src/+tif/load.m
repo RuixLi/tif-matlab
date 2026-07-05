@@ -1,5 +1,5 @@
-function [stack,TFtag] = loadTif(tiffFile,index,stride)
-% load imaging tiff file as a XYT array
+function [stack, tfTag] = load(tiffFile, index, stride)
+% LOAD Load a TIFF file or TIFF image sequence as a Y-by-X-by-T stack.
 
 % INPUT
 % tiffFile, a tiff object or a file directory
@@ -10,17 +10,17 @@ function [stack,TFtag] = loadTif(tiffFile,index,stride)
 
 % OUTPUT
 % stack, the [Y,X,T] data array in tiff
-% TFtag, a struct contains some useful fields in tag struct
+% tfTag, a struct contains some useful fields in tag struct
 
 % DOCUMENTATION
-% for each frame in tiff, the TFtag has following fields
+% for each frame in tiff, the tfTag has following fields
 
-% TFtag.FrameN
-% TFtag.ImageLength
-% TFtag.ImageWidth
-% TFtag.BitsPerSample
-% TFtag.Compression
-% TFtag.ImageDescription
+% tfTag.FrameN
+% tfTag.ImageLength
+% tfTag.ImageWidth
+% tfTag.BitsPerSample
+% tfTag.Compression
+% tfTag.ImageDescription
 
 % written by Ruix.Li in Sep, 2020
 
@@ -56,21 +56,21 @@ if nargin < 2 || isempty(index)
     if dirFlg
         index = [1 nFrame];
     else
-        nFrame = tifFrame(t);
+        nFrame = tif.frame(t);
         index = [1 nFrame];
     end
 end
 
-if nargin < 3     
+if nargin < 3
     if length(index) == 1
         if dirFlg
             index = [index nFrame];
-            
+
         else
-            nFrame = tifFrame(t);
+            nFrame = tif.frame(t);
             index = [index nFrame];
             disp(index)
-        end        
+        end
     end
     stride = 1;
 end
@@ -88,15 +88,15 @@ if dirFlg == 0
     h = t.getTag('ImageLength');
     LoadFrames = length(loadIdx);
     stack = zeros(h, w, LoadFrames, class(read(t)));
-    
+
     if loadTag
-        [TFtag(1:LoadFrames).frameN] = deal(currentDirectory(t));
-        [TFtag(1:LoadFrames).ImageWidth] = deal(getTag(t,256));
-        [TFtag(1:LoadFrames).ImageLength] = deal(getTag(t,257));
-        [TFtag(1:LoadFrames).BitsPerSample] = deal(getTag(t,258));
-        [TFtag(1:LoadFrames).Compression] = deal(getTag(t,259));
-        try [TFtag(1:LoadFrames).ImageDescription] = deal(getTag(t,270));
-        catch ; [TFtag(1:LoadFrames).ImageDescription] = deal('Null'); end
+        [tfTag(1:LoadFrames).frameN] = deal(currentDirectory(t));
+        [tfTag(1:LoadFrames).ImageWidth] = deal(getTag(t,256));
+        [tfTag(1:LoadFrames).ImageLength] = deal(getTag(t,257));
+        [tfTag(1:LoadFrames).BitsPerSample] = deal(getTag(t,258));
+        [tfTag(1:LoadFrames).Compression] = deal(getTag(t,259));
+        try [tfTag(1:LoadFrames).ImageDescription] = deal(getTag(t,270));
+        catch ; [tfTag(1:LoadFrames).ImageDescription] = deal('Null'); end
     end
     warning('off', 'imageio:tiffutils:libtiffWarning')
     for n = 1:LoadFrames
@@ -105,48 +105,48 @@ if dirFlg == 0
         % stack(:,:,n) = im(:,:,1);
         stack(:,:,n) = read(t);
         if loadTag
-            TFtag(n).frameN = currentDirectory(t);
-            TFtag(n).ImageWidth = getTag(t,256);
-            TFtag(n).ImageLength = getTag(t,257);
-            TFtag(n).BitsPerSample = getTag(t,258);
-            TFtag(n).Compression = getTag(t,259);
-            try [TFtag(1:LoadFrames).ImageDescription] = deal(getTag(t,270));
-            catch ; [TFtag(1:LoadFrames).ImageDescription] = deal('Null'); end
-        end           
+            tfTag(n).frameN = currentDirectory(t);
+            tfTag(n).ImageWidth = getTag(t,256);
+            tfTag(n).ImageLength = getTag(t,257);
+            tfTag(n).BitsPerSample = getTag(t,258);
+            tfTag(n).Compression = getTag(t,259);
+            try [tfTag(1:LoadFrames).ImageDescription] = deal(getTag(t,270));
+            catch ; [tfTag(1:LoadFrames).ImageDescription] = deal('Null'); end
+        end
     end
-    
+
 else % load from multiple files in the folder
-    
+
     disp(['loading tiffs from ' tifNames{index(1)} ' to ' tifNames{index(2)}])
     ToLoadIdx = index(1):stride:index(2);
     LoadFrames = length(ToLoadIdx);
     t = Tiff([tiffFile filesep tifNames{index(1)}]);
     w = t.getTag('ImageWidth');
     h = t.getTag('ImageLength');
-    
+
     if loadTag
-        [TFtag(1:LoadFrames).frameN] = deal(ToLoadIdx(1));
-        [TFtag(1:LoadFrames).ImageWidth] = deal(getTag(t,256));
-        [TFtag(1:LoadFrames).ImageLength] = deal(getTag(t,257));
-        [TFtag(1:LoadFrames).BitsPerSample] = deal(getTag(t,258));
-        [TFtag(1:LoadFrames).Compression] = deal(getTag(t,259));
-        try [TFtag(1:LoadFrames).ImageDescription] = deal(getTag(t,270));
-        catch ; [TFtag(1:LoadFrames).ImageDescription] = deal('Null'); end
+        [tfTag(1:LoadFrames).frameN] = deal(ToLoadIdx(1));
+        [tfTag(1:LoadFrames).ImageWidth] = deal(getTag(t,256));
+        [tfTag(1:LoadFrames).ImageLength] = deal(getTag(t,257));
+        [tfTag(1:LoadFrames).BitsPerSample] = deal(getTag(t,258));
+        [tfTag(1:LoadFrames).Compression] = deal(getTag(t,259));
+        try [tfTag(1:LoadFrames).ImageDescription] = deal(getTag(t,270));
+        catch ; [tfTag(1:LoadFrames).ImageDescription] = deal('Null'); end
     end
-    
+
     stack = zeros(h, w, LoadFrames, class(read(t)));
 
     for n = 1:LoadFrames
         t = Tiff([tiffFile filesep tifNames{ToLoadIdx(n)}]);
         stack(:,:,n) = read(t);
         if loadTag
-            TFtag(n).frameN = tifNames{ToLoadIdx(n)};
-            TFtag(n).ImageWidth = getTag(t,256);
-            TFtag(n).ImageLength = getTag(t,257);
-            TFtag(n).BitsPerSample = getTag(t,258);
-            TFtag(n).Compression = getTag(t,259);
-            try [TFtag(1:LoadFrames).ImageDescription] = deal(getTag(t,270));
-            catch ; [TFtag(1:LoadFrames).ImageDescription] = deal('Null'); end
+            tfTag(n).frameN = tifNames{ToLoadIdx(n)};
+            tfTag(n).ImageWidth = getTag(t,256);
+            tfTag(n).ImageLength = getTag(t,257);
+            tfTag(n).BitsPerSample = getTag(t,258);
+            tfTag(n).Compression = getTag(t,259);
+            try [tfTag(1:LoadFrames).ImageDescription] = deal(getTag(t,270));
+            catch ; [tfTag(1:LoadFrames).ImageDescription] = deal('Null'); end
         end
     end
 end

@@ -1,0 +1,142 @@
+{
+  "kind": "conventions-bundle-manifest",
+  "bundle_hash": "sha256:81c7753a1ca70467e5e623eed43e73f319471e4fd56dd89b7eb05d21ab122fb2",
+  "files": [
+    {
+      "path": "conventions.md",
+      "hash": "sha256:7ec2198a8b4aaa5de244e1935c4b63ff9c1c62a24aa62626d13e7067df8d2a89"
+    },
+    {
+      "path": "conventions/building-context.md",
+      "hash": "sha256:279e6f4d25aa6b329a6300d6bfb6d6c0a00dc61af8552d4fa7e07cb208c9ad27"
+    },
+    {
+      "path": "conventions/how-to-work-here.md",
+      "hash": "sha256:52475a57b7bc2243b4430952d5e13ef2953b1b51d84a4554b0fa038ce4df80f0"
+    },
+    {
+      "path": "conventions/tracking-progress.md",
+      "hash": "sha256:1108e644c5e7b224732bfc6ce7f4bffe64c3858b4e6623d5c1526a1930fe43e9"
+    },
+    {
+      "path": "conventions/where-files-live.md",
+      "hash": "sha256:b316c8bd67f991a2c2ab549dade263ba3f24f31fd3ac98d8317cc1455bc2368e"
+    },
+    {
+      "path": "conventions/working-with-code.md",
+      "hash": "sha256:2b8315c0e78dc8ef6c96b9e39d4248dfa506cc4ebd2dcccf5f48e51d8ad2b1ab"
+    },
+    {
+      "path": "conventions/working-with-data.md",
+      "hash": "sha256:f67bf1a691713d71fae4c6d0d6da2f07cb1d1d7c9d2e8c22297679b7e7d4c387"
+    },
+    {
+      "path": "conventions/writing-for-the-user.md",
+      "hash": "sha256:30e021ddf9ec0e41dae438c3f9388e395f0d465f244308f78e546e9c504d683e"
+    },
+    {
+      "path": "references.md",
+      "hash": "sha256:d38e2ac79a0472e5cb9c6e2dbd4b4deefe3480fec0203bb8c76a92f13587c85a"
+    },
+    {
+      "path": "references/api-surface.md",
+      "hash": "sha256:96e9e8da412e706e61b168334ce2cc4a82aa769e7176d2a0923566ae4cc20d7d"
+    },
+    {
+      "path": "references/artifact-manifest.md",
+      "hash": "sha256:2b2e602bc18591ab7bd851e78063d3c680b4f2025d14bba89c90be3dd6f77590"
+    },
+    {
+      "path": "references/document-frontmatter.md",
+      "hash": "sha256:7d9cb7fd19c544859d7639773ccdf84c2ba0454d05281d14b42c16be9b9b5848"
+    },
+    {
+      "path": "references/gradient-propagation-workflow.md",
+      "hash": "sha256:94c85eeb97b82507cef395e88e286be94bd8da5360a523dd6eaa616e85ea1639"
+    },
+    {
+      "path": "references/naming-and-formatting.md",
+      "hash": "sha256:fd172b79549bf5e9368af1e0dba0457a5e089ff6dd3ffc9a4bbe62f7f6bf925f"
+    },
+    {
+      "path": "references/project-layout.md",
+      "hash": "sha256:bbb06002becdab375e1340b4876b4f92c8b1b0cf99d2bb6f7d67fdd74a80f74a"
+    },
+    {
+      "path": "references/re-enterable-context.md",
+      "hash": "sha256:393d03ef28179dc79b11fa63caabe8abdd03a93f6436a408877f93b788cc478f"
+    },
+    {
+      "path": "references/tool-usage.md",
+      "hash": "sha256:905615bb4c850f80628218fdad61da9bf3e26be8d4da62850a8e0f6035675e31"
+    },
+    {
+      "path": "references/tree-graph-filesystem.md",
+      "hash": "sha256:9eae61dea092e6b1f5ddb625557f20fdb4d3da1654ccdf71503b658794f6a7ea"
+    },
+    {
+      "path": "references/validation-model.md",
+      "hash": "sha256:5754710cd6ffae24993781b192892e3911619d368e7cba1f99479e84f0b53711"
+    },
+    {
+      "path": "references/work-documents.md",
+      "hash": "sha256:2962a9bc41623a0a4772a33aca4ca7e081b1e453ac2252031a2ad849d9c8da62"
+    },
+    {
+      "path": "templates.md",
+      "hash": "sha256:cacacc3f5b0064b0aa494776f6c62bbb2546d60111779dc8461dc3ce773eebf7"
+    },
+    {
+      "path": "templates/context/discussions.md",
+      "hash": "sha256:092adf85f752b15291ea4def3e930e098e0a1530c3adb8532e2992bf688fb404"
+    },
+    {
+      "path": "templates/context/effort.md",
+      "hash": "sha256:227dacf9b5d2d1049043cbd06f71bc705a05bb67c2565c469895c8ab39f7e0b2"
+    },
+    {
+      "path": "templates/context/jobs.md",
+      "hash": "sha256:de6d16009c4845d3fa798225063c7e8c044ab38e4ea4a63a078a54855a071c03"
+    },
+    {
+      "path": "templates/context/log.md",
+      "hash": "sha256:fb5b24413918d09a3e995855601e3c4248cc8e597a091897406b04fb6d2cf95d"
+    },
+    {
+      "path": "templates/context/plan.md",
+      "hash": "sha256:554ad1ca6784609479027306d02514947fb4aa229b32d636eaba8c27c57a203e"
+    },
+    {
+      "path": "templates/context/report.md",
+      "hash": "sha256:129de32859eb18169cb2757611a76c4f5a023d106b1946f20b1ce49a46890bdf"
+    },
+    {
+      "path": "templates/context/scheme.md",
+      "hash": "sha256:d00c93b19158e5cfa09d5185d0a55eb143f5e45626140e9532fad1df9d9c0e5a"
+    },
+    {
+      "path": "templates/project/AGENTS.md",
+      "hash": "sha256:3487b73c20a4f6371831e4e54ba00179e362d554ffd089797d941b25c52cfb50"
+    },
+    {
+      "path": "templates/project/CHANGELOG.md",
+      "hash": "sha256:73d390d45daf513f44c05c14594e8eabd18b36b006610ea63d9e3715c8d3b7af"
+    },
+    {
+      "path": "templates/project/ENVIRONMENT.md",
+      "hash": "sha256:da15ec7ac9be2feb0081ec4ad09fdf9a46f95002346798ad8de1895062e62e4a"
+    },
+    {
+      "path": "templates/project/README.md",
+      "hash": "sha256:721b7e5739f71c77e56dafe2d6e03c2256d5cd95a999c5826765c0c18d52c3be"
+    },
+    {
+      "path": "templates/project/gitignore",
+      "hash": "sha256:bec9c442cbb12c98bc959a0af574175bf6ec85711d3af81d7b8bc22d029a7f67"
+    },
+    {
+      "path": "templates/project/pyproject.toml",
+      "hash": "sha256:0b868b327e4d98bf9c716b8d980ede59043e91c2f2a896d204865a2a1a1b97cc"
+    }
+  ]
+}

@@ -1,7 +1,9 @@
-function writeTif(fname, im)
+function write(fname, im)
+% WRITE Write a single grayscale or RGB image to a TIFF file.
+
 % write single-page 8-bit grayscale or 24-bit RGB TIF image
 % automatically cast data into uint8
-% also see saveTiff to save multi-page dataset
+% also see tif.save to save multi-page dataset
 
 % INPUT
 % fname, file name
@@ -10,7 +12,7 @@ function writeTif(fname, im)
 % written by Ruix.Li in Sep, 2020
 
 if ~strcmpi(class(im),'uint8')
-    disp('writeTif: cast image into uint8')
+    disp('tif.write: cast image into uint8')
     im = uint8(imrscale(im,[0,255]));
 end
 
