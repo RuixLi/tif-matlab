@@ -1,21 +1,21 @@
-function saveTif(fname,stack,bitspersamp,ImageDescription)
-% saveTiff save XYT numeric array as a muti-page tif file
+function save(fname, stack, bitspersamp, imageDescription)
+% SAVE Save a Y-by-X-by-T stack as a multipage TIFF file.
 
 % INPUT
 % stack, a numeric stack of uint8 or uint16
 % if stack is float, cast it as uint8/uint16
 % fname, filename of the tiff
 % bitspersamp, 8 or 16(default) for uint8 or uint16
-% ImageDescription, a string vector
+% imageDescription, a string vector
 
-% wirtten by Ruix.Li in Oct, 2020
+% written by Ruix.Li in Oct, 2020
 
 if ~exist('bitspersamp','var'); bitspersamp = 16; end
 
-if exist('ImageDescription','var')
-    writeImDesc = 1; 
+if exist('imageDescription','var')
+    writeImDesc = 1;
 else
-    writeImDesc = 0; 
+    writeImDesc = 0;
 end
 
 [pathstr, name, ~] = fileparts(fname);
@@ -52,7 +52,7 @@ tagstruct.PlanarConfiguration = Tiff.PlanarConfiguration.Chunky;
 tagstruct.Software = ['MATLAB ' version];
 
 if writeImDesc
-    tagstruct.ImageDescription = ImageDescription;
+    tagstruct.ImageDescription = imageDescription;
 end
 
 tic
