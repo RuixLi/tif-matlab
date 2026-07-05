@@ -1,10 +1,10 @@
 ---
 kind: plan
 name: reliability-first io
-status: in-execution
+status: completed
 description: Adds strict validation and deterministic TIFF I/O behavior under the existing tif namespace.
 created: "2026-07-05T18:49"
-updated: "2026-07-05T18:49"
+updated: "2026-07-05T18:56"
 ---
 # Reliability-First I/O Implementation Plan
 
@@ -42,9 +42,9 @@ updated: "2026-07-05T18:49"
 **Files:**
 - Create: `tests/test_reliability_io.m`
 
-- [ ] Write tests for string/char paths, `.tif`/`.tiff`, deterministic folder loading, `[start -1]` frame ranges, stride, out-of-range errors, empty folders, mixed image sizes, dtype mismatch, and `tif.write` uint8 strictness.
-- [ ] Run `matlab -batch "results = runtests('tests'); assertSuccess(results);"` and verify the new tests fail for the current behavior.
-- [ ] Commit the failing oracle.
+- [x] Write tests for string/char paths, `.tif`/`.tiff`, deterministic folder loading, `[start -1]` frame ranges, stride, out-of-range errors, empty folders, mixed image sizes, dtype mismatch, and `tif.write` uint8 strictness.
+- [x] Run `matlab -batch "results = runtests('tests'); assertSuccess(results);"` and verify the new tests fail for the current behavior.
+- [x] Commit the failing oracle.
 
 ### Task 2: Strict Load And Frame Behavior
 
@@ -52,12 +52,12 @@ updated: "2026-07-05T18:49"
 - Modify: `src/+tif/load.m`
 - Modify: `src/+tif/frame.m`
 
-- [ ] Add `arguments` blocks to `tif.load` and `tif.frame`.
-- [ ] Normalize text paths from `char` or scalar `string`.
-- [ ] Strictly error for missing paths, empty folders, unsupported source types, invalid frame ranges, and out-of-range frame requests.
-- [ ] Load folder TIFFs in deterministic natural order and verify every image has the same size/class before writing into the output stack.
-- [ ] Restore warning state and close internally opened `Tiff` handles with cleanup guards.
-- [ ] Run MATLAB tests and commit when green.
+- [x] Add `arguments` blocks to `tif.load` and `tif.frame`.
+- [x] Normalize text paths from `char` or scalar `string`.
+- [x] Strictly error for missing paths, empty folders, unsupported source types, invalid frame ranges, and out-of-range frame requests.
+- [x] Load folder TIFFs in deterministic natural order and verify every image has the same size/class before writing into the output stack.
+- [x] Restore warning state and close internally opened `Tiff` handles with cleanup guards.
+- [x] Run MATLAB tests and commit when green.
 
 ### Task 3: Strict Save And Write Behavior
 
@@ -65,12 +65,12 @@ updated: "2026-07-05T18:49"
 - Modify: `src/+tif/save.m`
 - Modify: `src/+tif/write.m`
 
-- [ ] Add `arguments` blocks to `tif.save` and `tif.write`.
-- [ ] Accept `char` and scalar `string` paths.
-- [ ] Require `BitsPerSample` to match stack class: `uint8` with 8 and `uint16` with 16.
-- [ ] Require `tif.write` image input to be `uint8` so a single-image write does not silently rescale data.
-- [ ] Ensure output folders exist before writing and close `Tiff` handles with cleanup guards.
-- [ ] Run MATLAB tests and commit when green.
+- [x] Add `arguments` blocks to `tif.save` and `tif.write`.
+- [x] Accept `char` and scalar `string` paths.
+- [x] Require `BitsPerSample` to match stack class: `uint8` with 8 and `uint16` with 16.
+- [x] Require `tif.write` image input to be `uint8` so a single-image write does not silently rescale data.
+- [x] Ensure output folders exist before writing and close `Tiff` handles with cleanup guards.
+- [x] Run MATLAB tests and commit when green.
 
 ### Task 4: Docs And Report
 
@@ -83,10 +83,10 @@ updated: "2026-07-05T18:49"
 - Create: `context/reports/20260705-reliability-first-io.md`
 - Regenerate: `context/efforts.md`, `context/plans.md`, `context/logs.md`, `context/reports.md`
 
-- [ ] Document strict dtype behavior and frame range semantics.
-- [ ] Record final oracle results in the report.
-- [ ] Run `matlab -batch "results = runtests('tests'); assertSuccess(results);"` and `python -m aynit.cli check-project . --format text`.
-- [ ] Commit the final report.
+- [x] Document strict dtype behavior and frame range semantics.
+- [x] Record final oracle results in the report.
+- [x] Run `matlab -batch "results = runtests('tests'); assertSuccess(results);"` and `python -m aynit.cli check-project . --format text`.
+- [x] Commit the final report.
 
 ## Untouchables
 

@@ -3,5 +3,5 @@
 
 | path | name | status | description | updated |
 | --- | --- | --- | --- | --- |
-| [20260705-reliability-first-io](plans/20260705-reliability-first-io.md) | reliability-first io | in-execution | Adds strict validation and deterministic TIFF I/O behavior under the existing tif namespace. | 2026-07-05T18:49 |
+| [20260705-reliability-first-io](plans/20260705-reliability-first-io.md) | reliability-first io | completed | Adds strict validation and deterministic TIFF I/O behavior under the existing tif namespace. | 2026-07-05T18:56 |
 | [20260705-structure-alignment](plans/20260705-structure-alignment.md) | structure alignment | completed | Executes the first structural slice that turns the loose MATLAB utilities into an agent-ready package. | 2026-07-05T18:25 |

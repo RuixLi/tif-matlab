@@ -5,8 +5,8 @@
 ## Features
 
 - Load a multipage TIFF file or a folder of TIFF images as a `Y-by-X-by-T` stack.
-- Save a `Y-by-X-by-T` stack as a multipage TIFF file.
-- Write a single grayscale or RGB TIFF image.
+- Save a `uint8` or `uint16` `Y-by-X-by-T` stack as a multipage TIFF file.
+- Write a single `uint8` grayscale or RGB TIFF image.
 - Count frames in a TIFF file.
 
 ## Setup
@@ -41,6 +41,16 @@ tif.write(path, image);
 
 n = tif.frame(path);
 ```
+
+Paths may be `char` vectors or scalar `string` values. Folder loads include `.tif` and `.tiff` files in deterministic natural order, so `frame2.tif` comes before `frame10.tif`.
+
+Frame ranges use `[start end]`; set `end` to `-1` to load through the last frame. For example:
+
+```matlab
+stack = tif.load('movie.tif', [2 -1], 2);  % frames 2, 4, 6, ... through the end
+```
+
+`tif.save` is strict about bit depth: `BitsPerSample=8` requires `uint8`, and `BitsPerSample=16` requires `uint16`. `tif.write` requires `uint8`. Scale or cast data explicitly before calling these functions.
 
 The full public surface is listed in [src/+tif/Contents.m](src/+tif/Contents.m).
 

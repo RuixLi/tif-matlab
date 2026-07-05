@@ -1,10 +1,10 @@
 ---
 kind: effort
 name: reliability-first io
-status: active
+status: done
 description: Hardens the existing TIFF load/save/write/frame behavior against silent errors and nondeterministic inputs.
 created: "2026-07-05T18:38"
-updated: "2026-07-05T18:49"
+updated: "2026-07-05T18:56"
 ---
 # Reliability-First I/O - Effort
 
@@ -61,4 +61,4 @@ Keep the public API small while making behavior explicit. Use input validation a
 
 ## Seal
 
-- Sealed at: pending this reliability branch report.
+- Sealed at: branch `reliability-first-io`; ground: MATLAB Unit Test and all-you-need-is-trust `check-project`; by: Codex, on 2026-07-05.

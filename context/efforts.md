@@ -4,6 +4,6 @@
 | path | kind | name | status | description | updated |
 | --- | --- | --- | --- | --- | --- |
 | [20260705-performance-large-data](efforts/20260705-performance-large-data.md) | effort | performance and large-data support | proposed | Adds inspection and large-stack options after the reliability contract is stable. | 2026-07-05T18:38 |
-| [20260705-reliability-first-io](efforts/20260705-reliability-first-io.md) | effort | reliability-first io | active | Hardens the existing TIFF load/save/write/frame behavior against silent errors and nondeterministic inputs. | 2026-07-05T18:49 |
+| [20260705-reliability-first-io](efforts/20260705-reliability-first-io.md) | effort | reliability-first io | done | Hardens the existing TIFF load/save/write/frame behavior against silent errors and nondeterministic inputs. | 2026-07-05T18:56 |
 | [20260705-structure-alignment](efforts/20260705-structure-alignment.md) | effort | structure alignment | done | Realigns the old loose MATLAB TIFF utilities as an agent-ready namespaced package. | 2026-07-05T18:15 |
 | [20260705-behavior-roadmap](efforts/20260705-behavior-roadmap.md) | scheme | behavior roadmap | active | Coordinates reliability and performance patches for the TIFF package after structure alignment. | 2026-07-05T18:38 |
