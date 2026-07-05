@@ -1,10 +1,10 @@
 ---
 kind: plan
 name: structure alignment
-status: in-execution
+status: completed
 description: Executes the first structural slice that turns the loose MATLAB utilities into an agent-ready package.
 created: "2026-07-05T18:11"
-updated: "2026-07-05T18:11"
+updated: "2026-07-05T18:15"
 ---
 # Structure Alignment - Plan
 
@@ -37,9 +37,9 @@ Execute the approved structure alignment design and the detailed implementation 
 
 - [x] Write failing MATLAB structure oracle.
 - [x] Move MATLAB API into `src/+tif`.
-- [ ] Add agentic project surfaces.
-- [ ] Move conversion script into `examples/`.
-- [ ] Run final verification and write report.
+- [x] Add agentic project surfaces.
+- [x] Move conversion script into `examples/`.
+- [x] Run final verification and write report.
 
 ## Untouchables
 

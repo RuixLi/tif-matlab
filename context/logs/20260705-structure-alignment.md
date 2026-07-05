@@ -1,10 +1,10 @@
 ---
 kind: log
 name: structure alignment
-status: in-execution
+status: completed
 description: Records the structure alignment branch execution.
 created: "2026-07-05T18:11"
-updated: "2026-07-05T18:11"
+updated: "2026-07-05T18:15"
 ---
 # Structure Alignment - Log
 
@@ -30,4 +30,17 @@ updated: "2026-07-05T18:11"
 - Removed the old root-level MATLAB functions.
 - Verified `matlab -batch "results = runtests('tests'); assertSuccess(results);"` passed after the package move.
 
-**Next:** Finish agentic project surfaces, move the example, and run final verification.
+### 2026-07-05 - Agentic surfaces and example
+
+- Vendored the all-you-need-is-trust conventions into `context/`.
+- Added `AGENTS.md`, `ENVIRONMENT.md`, `CHANGELOG.md`, a rewritten `README.md`, and current work documents.
+- Verified `$env:PYTHONPATH='D:\code\all-you-need-is-trust\tools\src'; python -m aynit.cli check-project . --format text` reported 11 passes, 0 failures, and 0 warnings.
+- Moved the conversion script to `examples/sequence_to_multipage.m`.
+- Archived the empty historical `version-1-0-2.txt` marker under `context/archive/`.
+
+### 2026-07-05 - Final verification
+
+- Verified `matlab -batch "results = runtests('tests'); assertSuccess(results);"` completed successfully.
+- Verified `$env:PYTHONPATH='D:\code\all-you-need-is-trust\tools\src'; python -m aynit.cli check-project . --format text` reported 11 passes, 0 failures, and 0 warnings.
+
+**Next:** Human review of branch `structure-alignment`; merge to `main` only after approval.

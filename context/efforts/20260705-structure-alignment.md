@@ -1,10 +1,10 @@
 ---
 kind: effort
 name: structure alignment
-status: active
+status: done
 description: Realigns the old loose MATLAB TIFF utilities as an agent-ready namespaced package.
 created: "2026-07-05T18:11"
-updated: "2026-07-05T18:11"
+updated: "2026-07-05T18:15"
 ---
 # Structure Alignment - Effort
 
@@ -54,4 +54,4 @@ Realign the repository as a MATLAB package that future agents can enter, test, a
 
 ## Seal
 
-- Sealed at: pending final report.
+- Sealed at: branch `structure-alignment`; ground: MATLAB Unit Test and all-you-need-is-trust `check-project`; by: Codex, on 2026-07-05.
