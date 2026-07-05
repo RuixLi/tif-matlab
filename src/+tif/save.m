@@ -1,68 +1,93 @@
 function save(fname, stack, bitspersamp, imageDescription)
 % SAVE Save a Y-by-X-by-T stack as a multipage TIFF file.
-
-% INPUT
-% stack, a numeric stack of uint8 or uint16
-% if stack is float, cast it as uint8/uint16
-% fname, filename of the tiff
-% bitspersamp, 8 or 16(default) for uint8 or uint16
-% imageDescription, a string vector
-
-% written by Ruix.Li in Oct, 2020
-
-if ~exist('bitspersamp','var'); bitspersamp = 16; end
-
-if exist('imageDescription','var')
-    writeImDesc = 1;
-else
-    writeImDesc = 0;
+arguments
+    fname {mustBeTextScalar}
+    stack {mustBeNumeric, mustBeNonempty}
+    bitspersamp (1,1) double {mustBeMember(bitspersamp, [8 16])} = 16
+    imageDescription {mustBeTextScalar} = ""
 end
 
-[pathstr, name, ~] = fileparts(fname);
-fname = fullfile(pathstr,[name,'.tif']); % ensure file has an .tiff extension
+validateStack(stack);
+validateBitDepthClass(stack, bitspersamp);
 
-t = Tiff(fname,'w');
+fname = ensureTiffExtension(textToChar(fname));
+ensureParentFolderExists(fname);
 
-tagstruct.ImageLength = size(stack,1);
-tagstruct.ImageWidth = size(stack,2);
+t = Tiff(fname, 'w');
+cleanupTiff = onCleanup(@() close(t));
+
+tagstruct.ImageLength = size(stack, 1);
+tagstruct.ImageWidth = size(stack, 2);
 tagstruct.Photometric = Tiff.Photometric.MinIsBlack;
-
-if bitspersamp == 8
-    tagstruct.BitsPerSample = 8;
-    if ~strcmpi(class(stack),'uint8')
-        warning('cast data into uint8')
-        stack =rescale(stack,0,255);
-        stack = cast(stack,'uint8');
-    end
-end
-
-if bitspersamp == 16
-    tagstruct.BitsPerSample = 16;
-    if ~strcmpi(class(stack),'uint16')
-        warning('cast data into uint16')
-        stack =rescale(stack,0,65535);
-        stack = cast(stack,'uint16');
-    end
-end
-
+tagstruct.BitsPerSample = bitspersamp;
 tagstruct.SampleFormat = Tiff.SampleFormat.UInt;
 tagstruct.SamplesPerPixel = 1;
 tagstruct.RowsPerStrip = 256;
 tagstruct.PlanarConfiguration = Tiff.PlanarConfiguration.Chunky;
 tagstruct.Software = ['MATLAB ' version];
 
-if writeImDesc
-    tagstruct.ImageDescription = imageDescription;
+if strlength(string(imageDescription)) > 0
+    tagstruct.ImageDescription = char(imageDescription);
 end
 
-tic
 t.setTag(tagstruct);
-t.write(stack(:,:,1));
-for i = 2:size(stack,3)
+t.write(stack(:, :, 1));
+for i = 2:size(stack, 3)
     t.writeDirectory();
     t.setTag(tagstruct);
-    t.write(stack(:,:,i));
+    t.write(stack(:, :, i));
 end
-t.close()
-toc
+end
+
+function validateStack(stack)
+if ndims(stack) > 3
+    error('tif:save:InvalidStackShape', 'Stack must be a 2-D image or a Y-by-X-by-T array.');
+end
+if ~(isa(stack, 'uint8') || isa(stack, 'uint16'))
+    error('tif:save:UnsupportedClass', 'Stack must be uint8 or uint16.');
+end
+end
+
+function validateBitDepthClass(stack, bitspersamp)
+if bitspersamp == 8 && ~isa(stack, 'uint8')
+    error('tif:save:BitDepthClassMismatch', 'BitsPerSample 8 requires a uint8 stack.');
+end
+if bitspersamp == 16 && ~isa(stack, 'uint16')
+    error('tif:save:BitDepthClassMismatch', 'BitsPerSample 16 requires a uint16 stack.');
+end
+end
+
+function fname = ensureTiffExtension(fname)
+[pathstr, name, ext] = fileparts(fname);
+if isempty(ext)
+    fname = fullfile(pathstr, [name '.tif']);
+elseif ~ismember(lower(ext), {'.tif', '.tiff'})
+    error('tif:save:UnsupportedExtension', 'Output file must use .tif or .tiff extension.');
+end
+end
+
+function ensureParentFolderExists(fname)
+parentFolder = fileparts(fname);
+if ~isempty(parentFolder) && ~isfolder(parentFolder)
+    error('tif:save:FolderNotFound', 'Output folder does not exist: %s', parentFolder);
+end
+end
+
+function mustBeTextScalar(value)
+if isTextScalar(value)
+    return
+end
+error('tif:save:InvalidPath', 'Path must be char or scalar string.');
+end
+
+function tf = isTextScalar(value)
+tf = (ischar(value) && (isrow(value) || isempty(value))) || (isstring(value) && isscalar(value));
+end
+
+function pathValue = textToChar(value)
+if isstring(value)
+    pathValue = char(value);
+else
+    pathValue = value;
+end
 end
