@@ -19,7 +19,6 @@ You are reading `AGENTS.md`, the entry point for agents working on this reposito
 
 ### Deviations From The Conventions
 
-- Root-level `docs/superpowers/` exists only for the current migration design and implementation plan. Future project work should use `context/` work documents.
 - The first alignment branch intentionally removes backward compatibility for old root functions because the new package API is the desired public surface.
 
 ## Current Work

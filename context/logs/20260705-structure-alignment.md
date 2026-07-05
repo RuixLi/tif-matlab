@@ -4,15 +4,15 @@ name: structure alignment
 status: completed
 description: Records the structure alignment branch execution.
 created: "2026-07-05T18:11"
-updated: "2026-07-05T18:15"
+updated: "2026-07-05T18:25"
 ---
 # Structure Alignment - Log
 
 ## Related Files
 
 - [effort](../efforts/20260705-structure-alignment.md) | [plan](../plans/20260705-structure-alignment.md)
-- [design](../../docs/superpowers/specs/2026-07-05-structure-alignment-design.md)
-- [implementation plan](../../docs/superpowers/plans/2026-07-05-structure-alignment.md)
+- [design](../archive/superpowers/2026-07-05-structure-alignment-design.md)
+- [implementation plan](../archive/superpowers/2026-07-05-structure-alignment.md)
 
 ## Log
 
@@ -43,4 +43,9 @@ updated: "2026-07-05T18:15"
 - Verified `matlab -batch "results = runtests('tests'); assertSuccess(results);"` completed successfully.
 - Verified `$env:PYTHONPATH='D:\code\all-you-need-is-trust\tools\src'; python -m aynit.cli check-project . --format text` reported 11 passes, 0 failures, and 0 warnings.
 
-**Next:** Human review of branch `structure-alignment`; merge to `main` only after approval.
+### 2026-07-05 - Retired temporary docs
+
+- Moved the temporary Superpowers design and implementation plan from `docs/superpowers/` into `context/archive/superpowers/`.
+- Updated completed work-document links to point at the archived copies.
+
+**Next:** Merge branch `structure-alignment` to `main`.

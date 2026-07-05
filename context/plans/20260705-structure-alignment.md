@@ -4,7 +4,7 @@ name: structure alignment
 status: completed
 description: Executes the first structural slice that turns the loose MATLAB utilities into an agent-ready package.
 created: "2026-07-05T18:11"
-updated: "2026-07-05T18:15"
+updated: "2026-07-05T18:25"
 ---
 # Structure Alignment - Plan
 
@@ -14,7 +14,7 @@ Execute the approved structure alignment design and the detailed implementation 
 
 - Effort: [structure alignment](../efforts/20260705-structure-alignment.md)
 - Log: [structure alignment](../logs/20260705-structure-alignment.md)
-- Detailed plan: [2026-07-05-structure-alignment.md](../../docs/superpowers/plans/2026-07-05-structure-alignment.md)
+- Detailed plan: [2026-07-05-structure-alignment.md](../archive/superpowers/2026-07-05-structure-alignment.md)
 
 ## Decisions
 
