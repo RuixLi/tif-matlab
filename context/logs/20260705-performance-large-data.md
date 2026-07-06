@@ -20,4 +20,9 @@ updated: "2026-07-06T00:00"
 - User approved the narrowed scope: add `tif.info`, keep selected-frame loading on the existing `tif.load(path, [start end], stride)` API, and add semi-automatic BigTIFF support to `tif.save`.
 - Created this plan and log before touching behavior code.
 
-**Next:** Add the performance oracle tests.
+### 2026-07-06 - Performance oracle
+
+- Added `tests/test_performance_large_data.m`.
+- Verified `matlab -batch "results = runtests('tests/test_performance_large_data.m'); assertSuccess(results);"` failed for the intended reasons: `tif.info` is undefined, and `tif.save` rejects the new BigTIFF name-value options.
+
+**Next:** Implement `tif.info`.

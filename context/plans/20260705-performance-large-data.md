@@ -50,15 +50,15 @@ updated: "2026-07-06T00:00"
 - [x] Move the performance effort from `proposed` to `active`.
 - [x] Record the approved narrow scope in this plan.
 - [x] Create the execution log before touching behavior code.
-- [ ] Commit the planning checkpoint.
+- [x] Commit the planning checkpoint.
 
 ### Task 2: Performance Oracle
 
 **Files:**
 - Create: `tests/test_performance_large_data.m`
 
-- [ ] Write tests for `tif.info` on a multipage file, `tif.info` on a naturally sorted folder, selected-frame loading, explicit BigTIFF save mode, and automatic BigTIFF upgrade using a tiny test threshold.
-- [ ] Run `matlab -batch "results = runtests('tests/test_performance_large_data.m'); assertSuccess(results);"` and verify the new tests fail because `tif.info` and BigTIFF options are not implemented yet.
+- [x] Write tests for `tif.info` on a multipage file, `tif.info` on a naturally sorted folder, selected-frame loading, explicit BigTIFF save mode, and automatic BigTIFF upgrade using a tiny test threshold.
+- [x] Run `matlab -batch "results = runtests('tests/test_performance_large_data.m'); assertSuccess(results);"` and verify the new tests fail because `tif.info` and BigTIFF options are not implemented yet.
 - [ ] Commit the failing oracle.
 
 ### Task 3: Metadata Inspection
