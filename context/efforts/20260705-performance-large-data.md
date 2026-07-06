@@ -1,10 +1,10 @@
 ---
 kind: effort
 name: performance and large-data support
-status: active
+status: done
 description: Adds inspection and large-stack options after the reliability contract is stable.
 created: "2026-07-05T18:38"
-updated: "2026-07-06T00:00"
+updated: "2026-07-06T00:20"
 ---
 # Performance And Large-Data Support - Effort
 
@@ -64,4 +64,4 @@ Build performance features as additive APIs around the reliability contract. Pre
 
 ## Seal
 
-- Sealed at: 2026-07-06 on branch `reliability-first-io` before merge to `main`.
+- Sealed at: 2026-07-06 on branch `reliability-first-io` before merge to `main`; passed MATLAB tests.

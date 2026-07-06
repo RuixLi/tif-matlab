@@ -6,9 +6,11 @@ All notable changes to this package are recorded here.
 
 ### Changed
 
-- Move the public MATLAB API to the `tif` package namespace: `tif.load`, `tif.save`, `tif.write`, and `tif.frame`.
+- Move the public MATLAB API to the `tif` package namespace: `tif.load`, `tif.info`, `tif.save`, `tif.write`, and `tif.frame`.
 - Add agentic project entry and context surfaces for all-you-need-is-trust alignment.
 - Harden TIFF I/O behavior with strict input validation, deterministic folder loading, string path support, and explicit bit-depth/class checks.
+- Add `tif.info` metadata inspection without pixel loading.
+- Add explicit and automatic BigTIFF support to `tif.save`.
 
 ## [1.0.2] - 2025-07-04
 

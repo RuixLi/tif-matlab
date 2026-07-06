@@ -1,10 +1,10 @@
 ---
 kind: log
 name: performance and large-data support
-status: in-execution
+status: completed
 description: Records the performance and large-data support branch execution.
 created: "2026-07-06T00:00"
-updated: "2026-07-06T00:00"
+updated: "2026-07-06T00:20"
 ---
 # Performance And Large-Data Support - Log
 
@@ -39,4 +39,10 @@ updated: "2026-07-06T00:00"
 - Verified `matlab -batch "results = runtests('tests/test_performance_large_data.m'); assertSuccess(results);"` passed.
 - Verified `matlab -batch "results = runtests('tests'); assertSuccess(results);"` passed.
 
-**Next:** Update README, CHANGELOG, report, and project indexes.
+### 2026-07-06 - Docs and report
+
+- Updated README, CHANGELOG, AGENTS, and the public-surface smoke test for `tif.info` and BigTIFF save behavior.
+- Added the final performance effort report.
+- Verified `$env:PYTHONPATH='D:\code\all-you-need-is-trust\tools\src'; python -m aynit.cli check-project . --format text` reported 11 passes, 0 failures, and 0 warnings.
+
+**Next:** Human review of branch `reliability-first-io`; merge to `main` only after approval.

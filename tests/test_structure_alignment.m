@@ -3,7 +3,7 @@ classdef test_structure_alignment < matlab.unittest.TestCase
         function packageFunctionsHaveHelp(testCase)
             repoRoot = fileparts(fileparts(mfilename('fullpath')));
             packageRoot = fullfile(repoRoot, 'src', '+tif');
-            publicFiles = {'load.m', 'save.m', 'write.m', 'frame.m'};
+            publicFiles = {'load.m', 'info.m', 'save.m', 'write.m', 'frame.m'};
 
             testCase.verifyTrue(isfile(fullfile(packageRoot, 'Contents.m')));
             for i = 1:numel(publicFiles)

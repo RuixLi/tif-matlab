@@ -1,10 +1,10 @@
 ---
 kind: plan
 name: performance and large-data support
-status: in-execution
+status: completed
 description: Adds metadata inspection, selected-frame coverage, and semi-automatic BigTIFF save behavior.
 created: "2026-07-06T00:00"
-updated: "2026-07-06T00:00"
+updated: "2026-07-06T00:20"
 ---
 # Performance And Large-Data Support Implementation Plan
 
@@ -94,11 +94,11 @@ updated: "2026-07-06T00:00"
 - Create: `context/reports/20260705-performance-large-data.md`
 - Regenerate: `context/efforts.md`, `context/plans.md`, `context/logs.md`, `context/reports.md`
 
-- [ ] Document `tif.info`, selected-frame loading, and BigTIFF save behavior.
-- [ ] Record the final oracle results in a report.
-- [ ] Run `matlab -batch "results = runtests('tests'); assertSuccess(results);"`.
-- [ ] Run `$env:PYTHONPATH='D:\code\all-you-need-is-trust\tools\src'; python -m aynit.cli check-project . --format text`.
-- [ ] Commit the completed performance patch.
+- [x] Document `tif.info`, selected-frame loading, and BigTIFF save behavior.
+- [x] Record the final oracle results in a report.
+- [x] Run `matlab -batch "results = runtests('tests'); assertSuccess(results);"`.
+- [x] Run `$env:PYTHONPATH='D:\code\all-you-need-is-trust\tools\src'; python -m aynit.cli check-project . --format text`.
+- [x] Commit the completed performance patch.
 
 ## Untouchables
 

@@ -8,7 +8,7 @@ You are reading `AGENTS.md`, the entry point for agents working on this reposito
 - **Purpose:** Provide a small, namespaced TIFF I/O API for MATLAB research code.
 - **Primary language:** MATLAB.
 - **Archetype:** `package`; status: development.
-- **Public API:** `tif.load`, `tif.save`, `tif.write`, and `tif.frame` in [src/+tif/](src/+tif/).
+- **Public API:** `tif.load`, `tif.info`, `tif.save`, `tif.write`, and `tif.frame` in [src/+tif/](src/+tif/).
 
 ## How To Work Here
 
