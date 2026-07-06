@@ -1,5 +1,34 @@
 function save(fname, stack, bitspersamp, imageDescription, options)
 % SAVE Save a Y-by-X-by-T stack as a multipage TIFF file.
+%
+% Syntax
+%   tif.save(path, stack)
+%   tif.save(path, stack, bitsPerSample)
+%   tif.save(path, stack, bitsPerSample, imageDescription)
+%   tif.save(___, 'BigTiff', tf)
+%   tif.save(___, 'BigTiffThresholdBytes', bytes)
+%
+% Inputs
+%   path - Output path as a char vector or scalar string. If no extension is
+%     supplied, .tif is appended. Existing extensions must be .tif or .tiff.
+%   stack - 2-D image or Y-by-X-by-T stack. Accepted classes are uint8 and
+%     uint16. The stack is written without rescaling.
+%   bitsPerSample - Optional bit depth, either 8 or 16. The default is 16.
+%     Use 8 only with uint8 stacks and 16 only with uint16 stacks.
+%   imageDescription - Optional char vector or scalar string written to the
+%     TIFF ImageDescription tag.
+%   BigTiff - Optional logical. true forces BigTIFF write mode.
+%   BigTiffThresholdBytes - Optional positive finite threshold for automatic
+%     BigTIFF upgrade. When the estimated output exceeds this value, tif.save
+%     writes BigTIFF and prints a notice. The default is near 4 GiB.
+%
+% Outputs
+%   None.
+%
+% Examples
+%   tif.save("movie.tif", uint16Stack);
+%   tif.save("movie.tif", uint8Stack, 8, "8-bit movie");
+%   tif.save("large.tif", uint16Stack, 16, "", "BigTiff", true);
 arguments
     fname {mustBeTextScalar}
     stack {mustBeNumeric, mustBeNonempty}

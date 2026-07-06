@@ -4,7 +4,7 @@ name: performance and large-data support
 status: passed
 description: Metadata inspection, selected-frame coverage, and semi-automatic BigTIFF save behavior passed the performance oracle.
 created: "2026-07-06T00:20"
-updated: "2026-07-06T00:20"
+updated: "2026-07-06T00:35"
 ---
 # Performance And Large-Data Support - Report
 
@@ -24,6 +24,7 @@ updated: "2026-07-06T00:20"
 - `matlab -batch "results = runtests('tests/test_performance_large_data.m'); assertSuccess(results);"` passed.
 - `matlab -batch "results = runtests('tests'); assertSuccess(results);"` passed.
 - `$env:PYTHONPATH='D:\code\all-you-need-is-trust\tools\src'; python -m aynit.cli check-project . --format text` passed with 11 passes, 0 failures, and 0 warnings.
+- Human-review documentation refinement added public help sections and README API details for syntax, inputs, outputs, and examples.
 
 ## Next Action(s)
 

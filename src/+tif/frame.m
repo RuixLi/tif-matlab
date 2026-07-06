@@ -1,5 +1,22 @@
 function n = frame(tifFile, seekInterval)
 % FRAME Count frames in a TIFF file.
+%
+% Syntax
+%   n = tif.frame(source)
+%   n = tif.frame(source, seekInterval)
+%
+% Inputs
+%   source - TIFF file source. Use a char vector or scalar string path to a
+%     .tif/.tiff file, or an open Tiff object.
+%   seekInterval - Optional positive integer retained for older call sites.
+%     The current implementation counts frames with imfinfo.
+%
+% Outputs
+%   n - Number of image directories/pages in the TIFF file.
+%
+% Examples
+%   n = tif.frame("movie.tif");
+%   stack = tif.load("movie.tif", [1 min(n, 100)]);
 arguments
     tifFile {mustBeFrameSource}
     seekInterval (1,1) double {mustBeInteger, mustBePositive} = 1000 %#ok<INUSA>

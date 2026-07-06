@@ -1,5 +1,25 @@
 function metadata = info(tiffSource)
 % INFO Inspect TIFF file or image-sequence metadata without loading pixels.
+%
+% Syntax
+%   metadata = tif.info(source)
+%
+% Inputs
+%   source - TIFF source path. Use a char vector or scalar string path to a
+%     .tif/.tiff file or a folder containing .tif/.tiff files. Folder sources
+%     are inspected in the same natural order used by tif.load.
+%
+% Outputs
+%   metadata - Struct with SourceType, Path, Files, FrameCount, PagesPerFile,
+%     ImageSize, ImageLength, ImageWidth, BitsPerSample, SamplesPerPixel,
+%     Class, Compression, ImageDescription, EstimatedStackBytes, and
+%     IsBigTiff. Pixel data is not loaded.
+%
+% Examples
+%   metadata = tif.info("movie.tif");
+%   if metadata.EstimatedStackBytes > 1e9
+%       stack = tif.load("movie.tif", [1 100]);
+%   end
 arguments
     tiffSource {mustBeTextScalar}
 end

@@ -1,5 +1,31 @@
 function [stack, tfTag] = load(tiffFile, index, stride)
 % LOAD Load a TIFF file or TIFF image sequence as a Y-by-X-by-T stack.
+%
+% Syntax
+%   stack = tif.load(source)
+%   stack = tif.load(source, index)
+%   stack = tif.load(source, index, stride)
+%   [stack, tags] = tif.load(___)
+%
+% Inputs
+%   source - TIFF source. Use a char vector or scalar string path to a
+%     .tif/.tiff file, a folder containing .tif/.tiff files, or an open Tiff
+%     object. Folder sources are loaded in deterministic natural order.
+%   index - Optional 1-based frame selection. Use [] or omit it to load all
+%     frames. Use a scalar N to load frames N through the end. Use [START END]
+%     to load an inclusive range. END may be -1 to mean the last frame.
+%   stride - Optional positive integer frame step. The default is 1.
+%
+% Outputs
+%   stack - Y-by-X-by-T numeric stack. All frames must be single-channel 2-D
+%     images with the same size and MATLAB class.
+%   tags - Optional struct array with frameN, ImageWidth, ImageLength,
+%     BitsPerSample, Compression, and ImageDescription for loaded frames.
+%
+% Examples
+%   stack = tif.load("movie.tif");
+%   stack = tif.load("movie.tif", [2 -1], 2);  % frames 2, 4, 6, ...
+%   [stack, tags] = tif.load("frames");
 arguments
     tiffFile {mustBeTiffSource}
     index (1,:) double {mustBeInteger} = []

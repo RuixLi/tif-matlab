@@ -1,5 +1,21 @@
 function write(fname, im)
 % WRITE Write a single uint8 grayscale or RGB image to a TIFF file.
+%
+% Syntax
+%   tif.write(path, image)
+%
+% Inputs
+%   path - Output path as a char vector or scalar string. If no extension is
+%     supplied, .tif is appended. Existing extensions must be .tif or .tiff.
+%   image - Single uint8 image. Accepted shapes are Y-by-X grayscale or
+%     Y-by-X-by-3 RGB. Data is written without rescaling.
+%
+% Outputs
+%   None.
+%
+% Examples
+%   tif.write("preview.tif", uint8Image);
+%   tif.write("rgb-preview.tif", uint8RgbImage);
 arguments
     fname {mustBeTextScalar}
     im {mustBeNonempty}

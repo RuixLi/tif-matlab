@@ -32,34 +32,71 @@ assert(isequal(loaded, stack))
 
 ## API
 
+### `tif.load`
+
 ```matlab
 stack = tif.load(path);
+[stack, tags] = tif.load(path);
+stack = tif.load(path, index);
 [stack, tags] = tif.load(path, index, stride);
-
-metadata = tif.info(path);
-
-tif.save(path, stack);
-tif.save(path, stack, bitsPerSample, imageDescription);
-tif.save(path, stack, bitsPerSample, imageDescription, 'BigTiff', true);
-
-tif.write(path, image);
-
-n = tif.frame(path);
 ```
 
-Paths may be `char` vectors or scalar `string` values. Folder loads include `.tif` and `.tiff` files in deterministic natural order, so `frame2.tif` comes before `frame10.tif`.
+`path` may be a `.tif`/`.tiff` file, a folder of `.tif`/`.tiff` files, or an open `Tiff` object. File and folder paths may be `char` vectors or scalar `string` values. Folder loads use deterministic natural order, so `frame2.tif` comes before `frame10.tif`.
 
-Frame ranges use `[start end]`; set `end` to `-1` to load through the last frame. For example:
+`index` controls the loaded frames:
+
+- Omit `index` or pass `[]` to load all frames.
+- Pass scalar `N` to load frames `N` through the last frame.
+- Pass `[start end]` to load an inclusive range.
+- Use `-1` as `end` to mean the last frame.
+
+`stride` is a positive integer frame step. The default is `1`.
 
 ```matlab
 stack = tif.load('movie.tif', [2 -1], 2);  % frames 2, 4, 6, ... through the end
 ```
 
-Use `tif.info(path)` to inspect metadata before allocating a stack. It reports source type, loadable frame count, image size, bit depth/class, selected TIFF tags, estimated stack bytes, and whether the file header is BigTIFF.
+The output stack is `Y-by-X-by-T`. Optional `tags` contains `frameN`, `ImageWidth`, `ImageLength`, `BitsPerSample`, `Compression`, and `ImageDescription`.
 
-`tif.save` is strict about bit depth: `BitsPerSample=8` requires `uint8`, and `BitsPerSample=16` requires `uint16`. `tif.write` requires `uint8`. Scale or cast data explicitly before calling these functions.
+### `tif.info`
 
-`tif.save` writes classic TIFF by default. Set `'BigTiff', true` to force BigTIFF. If BigTIFF is not requested but the estimated output size exceeds the classic TIFF threshold, `tif.save` automatically writes BigTIFF and prints a stdout notice.
+```matlab
+metadata = tif.info(path);
+```
+
+`path` may be a `.tif`/`.tiff` file or a folder of `.tif`/`.tiff` files. `tif.info` does not load pixel data. It reports source type, files, loadable frame count, pages per file, image size, bit depth/class, compression, image description, estimated stack bytes, and BigTIFF header status.
+
+### `tif.save`
+
+```matlab
+tif.save(path, stack)
+tif.save(path, stack, bitsPerSample)
+tif.save(path, stack, bitsPerSample, imageDescription)
+tif.save(___, 'BigTiff', true)
+tif.save(___, 'BigTiffThresholdBytes', bytes)
+```
+
+`path` may be a `char` vector or scalar `string`. If no extension is supplied, `.tif` is appended. Existing extensions must be `.tif` or `.tiff`.
+
+`stack` must be a 2-D image or `Y-by-X-by-T` stack with class `uint8` or `uint16`. `bitsPerSample` accepts only `8` or `16`, and it must match the stack class: `8` for `uint8`, `16` for `uint16`. Data is written without rescaling.
+
+`'BigTiff', true` forces BigTIFF output. Otherwise, `tif.save` writes classic TIFF unless the estimated output size exceeds the BigTIFF threshold; in that case it writes BigTIFF and prints a stdout notice.
+
+### `tif.write`
+
+```matlab
+tif.write(path, image)
+```
+
+Writes one `uint8` image. Accepted shapes are `Y-by-X` grayscale or `Y-by-X-by-3` RGB. Data is written without rescaling.
+
+### `tif.frame`
+
+```matlab
+n = tif.frame(path);
+```
+
+Returns the number of image directories/pages in a TIFF file. `path` may also be an open `Tiff` object.
 
 The full public surface is listed in [src/+tif/Contents.m](src/+tif/Contents.m).
 

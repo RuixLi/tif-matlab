@@ -11,6 +11,7 @@ All notable changes to this package are recorded here.
 - Harden TIFF I/O behavior with strict input validation, deterministic folder loading, string path support, and explicit bit-depth/class checks.
 - Add `tif.info` metadata inspection without pixel loading.
 - Add explicit and automatic BigTIFF support to `tif.save`.
+- Expand public function help and README API documentation with syntax, input contracts, outputs, and examples.
 
 ## [1.0.2] - 2025-07-04
 

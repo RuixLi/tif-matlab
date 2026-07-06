@@ -14,6 +14,12 @@ classdef test_structure_alignment < matlab.unittest.TestCase
                 end
                 text = fileread(filePath);
                 testCase.verifyNotEmpty(regexp(text, '^\s*%\s+\S+', 'once', 'lineanchors'), filePath);
+                requiredSections = {'Syntax', 'Inputs', 'Outputs', 'Examples'};
+                for j = 1:numel(requiredSections)
+                    pattern = ['^\s*%\s+' requiredSections{j} '\s*$'];
+                    testCase.verifyNotEmpty(regexp(text, pattern, 'once', 'lineanchors'), ...
+                        sprintf('%s is missing help section: %s', filePath, requiredSections{j}));
+                end
             end
         end
 
