@@ -77,11 +77,11 @@ updated: "2026-07-06T00:00"
 **Files:**
 - Modify: `src/+tif/save.m`
 
-- [ ] Add `BigTiff` and `BigTiffThresholdBytes` name-value options after the existing positional arguments.
-- [ ] Use MATLAB `Tiff` mode `'w8'` when `BigTiff=true`.
-- [ ] Estimate output size from stack element count, bytes per sample, and a small per-directory overhead; use `'w8'` automatically when the estimate exceeds the threshold.
-- [ ] Print a stdout notice only for automatic BigTIFF upgrade.
-- [ ] Run the performance test file and verify all new tests pass.
+- [x] Add `BigTiff` and `BigTiffThresholdBytes` name-value options after the existing positional arguments.
+- [x] Use MATLAB `Tiff` mode `'w8'` when `BigTiff=true`.
+- [x] Estimate output size from stack element count, bytes per sample, and a small per-directory overhead; use `'w8'` automatically when the estimate exceeds the threshold.
+- [x] Print a stdout notice only for automatic BigTIFF upgrade.
+- [x] Run the performance test file and verify all new tests pass.
 
 ### Task 5: Docs, Report, And Verification
 

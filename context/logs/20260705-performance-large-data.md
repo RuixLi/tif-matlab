@@ -31,4 +31,12 @@ updated: "2026-07-06T00:00"
 - Added package listing for `tif.info` in `src/+tif/Contents.m`.
 - Verified the focused performance test now passes the `tif.info` and selected-frame tests; only the BigTIFF `tif.save` tests remain red.
 
-**Next:** Implement BigTIFF mode selection in `tif.save`.
+### 2026-07-06 - BigTIFF save behavior
+
+- Extended `tif.save` with `BigTiff` and `BigTiffThresholdBytes` name-value options.
+- Implemented explicit BigTIFF mode with MATLAB `Tiff(..., 'w8')`.
+- Implemented automatic BigTIFF upgrade when estimated output bytes exceed the threshold, with a stdout notice only for the automatic path.
+- Verified `matlab -batch "results = runtests('tests/test_performance_large_data.m'); assertSuccess(results);"` passed.
+- Verified `matlab -batch "results = runtests('tests'); assertSuccess(results);"` passed.
+
+**Next:** Update README, CHANGELOG, report, and project indexes.

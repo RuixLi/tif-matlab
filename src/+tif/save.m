@@ -1,10 +1,12 @@
-function save(fname, stack, bitspersamp, imageDescription)
+function save(fname, stack, bitspersamp, imageDescription, options)
 % SAVE Save a Y-by-X-by-T stack as a multipage TIFF file.
 arguments
     fname {mustBeTextScalar}
     stack {mustBeNumeric, mustBeNonempty}
     bitspersamp (1,1) double {mustBeMember(bitspersamp, [8 16])} = 16
     imageDescription {mustBeTextScalar} = ""
+    options.BigTiff (1,1) logical = false
+    options.BigTiffThresholdBytes (1,1) double {mustBePositive, mustBeFinite} = 4293918720
 end
 
 validateStack(stack);
@@ -12,8 +14,12 @@ validateBitDepthClass(stack, bitspersamp);
 
 fname = ensureTiffExtension(textToChar(fname));
 ensureParentFolderExists(fname);
+[tiffMode, autoBigTiff, estimatedBytes] = chooseTiffMode(stack, bitspersamp, options.BigTiff, options.BigTiffThresholdBytes);
+if autoBigTiff
+    fprintf('tif.save: estimated output %.0f bytes exceeds classic TIFF limit; using BigTIFF.\n', estimatedBytes);
+end
 
-t = Tiff(fname, 'w');
+t = Tiff(fname, tiffMode);
 cleanupTiff = onCleanup(@() close(t));
 
 tagstruct.ImageLength = size(stack, 1);
@@ -37,6 +43,27 @@ for i = 2:size(stack, 3)
     t.setTag(tagstruct);
     t.write(stack(:, :, i));
 end
+end
+
+function [tiffMode, autoBigTiff, estimatedBytes] = chooseTiffMode(stack, bitspersamp, bigTiffRequested, bigTiffThresholdBytes)
+estimatedBytes = estimateOutputBytes(stack, bitspersamp);
+if bigTiffRequested
+    tiffMode = 'w8';
+    autoBigTiff = false;
+elseif estimatedBytes > bigTiffThresholdBytes
+    tiffMode = 'w8';
+    autoBigTiff = true;
+else
+    tiffMode = 'w';
+    autoBigTiff = false;
+end
+end
+
+function bytes = estimateOutputBytes(stack, bitspersamp)
+bytesPerSample = bitspersamp / 8;
+frameCount = size(stack, 3);
+directoryOverheadBytes = 4096;
+bytes = double(numel(stack)) * bytesPerSample + double(frameCount) * directoryOverheadBytes;
 end
 
 function validateStack(stack)
