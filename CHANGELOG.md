@@ -4,6 +4,10 @@ All notable changes to this package are recorded here.
 
 ## [Unreleased]
 
+- No unreleased changes.
+
+## [2.0.0] - 2026-07-06
+
 ### Changed
 
 - Move the public MATLAB API to the `tif` package namespace: `tif.load`, `tif.info`, `tif.save`, `tif.write`, and `tif.frame`.
