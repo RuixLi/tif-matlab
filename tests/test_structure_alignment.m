@@ -3,7 +3,7 @@ classdef test_structure_alignment < matlab.unittest.TestCase
         function packageFunctionsHaveHelp(testCase)
             repoRoot = fileparts(fileparts(mfilename('fullpath')));
             packageRoot = fullfile(repoRoot, 'src', '+tif');
-            publicFiles = {'load.m', 'save.m', 'write.m', 'frame.m'};
+            publicFiles = {'load.m', 'info.m', 'save.m', 'write.m', 'frame.m'};
 
             testCase.verifyTrue(isfile(fullfile(packageRoot, 'Contents.m')));
             for i = 1:numel(publicFiles)
@@ -14,6 +14,12 @@ classdef test_structure_alignment < matlab.unittest.TestCase
                 end
                 text = fileread(filePath);
                 testCase.verifyNotEmpty(regexp(text, '^\s*%\s+\S+', 'once', 'lineanchors'), filePath);
+                requiredSections = {'Syntax', 'Inputs', 'Outputs', 'Examples'};
+                for j = 1:numel(requiredSections)
+                    pattern = ['^\s*%\s+' requiredSections{j} '\s*$'];
+                    testCase.verifyNotEmpty(regexp(text, pattern, 'once', 'lineanchors'), ...
+                        sprintf('%s is missing help section: %s', filePath, requiredSections{j}));
+                end
             end
         end
 

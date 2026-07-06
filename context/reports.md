@@ -3,4 +3,6 @@
 
 | path | name | status | description | updated |
 | --- | --- | --- | --- | --- |
+| [20260705-performance-large-data](reports/20260705-performance-large-data.md) | performance and large-data support | passed | Metadata inspection, selected-frame coverage, and semi-automatic BigTIFF save behavior passed the performance oracle. | 2026-07-06T00:35 |
+| [20260705-reliability-first-io](reports/20260705-reliability-first-io.md) | reliability-first io | passed | Strict validation, deterministic folder loading, and dtype-safe TIFF I/O passed the reliability oracle. | 2026-07-05T18:56 |
 | [20260705-structure-alignment](reports/20260705-structure-alignment.md) | structure alignment | passed | MATLAB tests and the project readiness check passed for the namespaced package alignment. | 2026-07-05T18:15 |

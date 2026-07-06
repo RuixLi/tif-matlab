@@ -1,10 +1,10 @@
 ---
 kind: scheme
 name: behavior roadmap
-status: active
+status: done
 description: Coordinates reliability and performance patches for the TIFF package after structure alignment.
 created: "2026-07-05T18:38"
-updated: "2026-07-05T18:38"
+updated: "2026-07-06T00:45"
 ---
 # Behavior Roadmap - Scheme
 
@@ -30,12 +30,13 @@ Coordinate the next behavior work for `tif-matlab` without losing the ideas disc
 
 ### Needs Your Response
 
-- **Implementation order after reliability** - decide whether performance should prioritize load-time memory control, save-time BigTIFF/compression, or metadata inspection.
+- None.
 
 ### Already Made
 
 - **Reliability first** - silent data corruption and nondeterministic file loading are higher risk than missing convenience features.
 - **Separate efforts** - reliability and performance should be separate branches because they have different oracles and review surfaces.
+- **Roadmap complete** - reliability-first I/O and performance/large-data support both have reports and README/CHANGELOG updates.
 
 ## Shared Constraints
 
@@ -46,4 +47,4 @@ Coordinate the next behavior work for `tif-matlab` without losing the ideas disc
 
 ## Success Signal
 
-This scheme is complete when both linked efforts have reports, and the follow-up API is stable enough to update `README.md` and `CHANGELOG.md`.
+Complete: both linked efforts have reports, and the follow-up API is documented in `README.md` and `CHANGELOG.md`.

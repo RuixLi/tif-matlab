@@ -3,4 +3,6 @@
 
 | path | name | status | description | updated |
 | --- | --- | --- | --- | --- |
+| [20260705-performance-large-data](logs/20260705-performance-large-data.md) | performance and large-data support | completed | Records the performance and large-data support branch execution. | 2026-07-06T00:35 |
+| [20260705-reliability-first-io](logs/20260705-reliability-first-io.md) | reliability-first io | completed | Records the reliability-first I/O branch execution. | 2026-07-06T00:45 |
 | [20260705-structure-alignment](logs/20260705-structure-alignment.md) | structure alignment | completed | Records the structure alignment branch execution. | 2026-07-05T18:25 |

@@ -1,10 +1,10 @@
 ---
 kind: effort
 name: reliability-first io
-status: proposed
+status: done
 description: Hardens the existing TIFF load/save/write/frame behavior against silent errors and nondeterministic inputs.
 created: "2026-07-05T18:38"
-updated: "2026-07-05T18:38"
+updated: "2026-07-05T18:56"
 ---
 # Reliability-First I/O - Effort
 
@@ -27,12 +27,13 @@ Make the current `tif.*` API safer before adding larger features.
 
 ### Needs Your Response
 
-- **Error strictness** - recommendation: prefer strict errors for missing paths, empty folders, out-of-range frames, mixed image sizes, and unsupported dtypes.
+- None. The user approved strict errors on 2026-07-05.
 
 ### Already Made
 
 - **Natural/deterministic folder ordering** - folder loads should not depend on filesystem enumeration order.
 - **Resource cleanup is part of correctness** - `Tiff` handles and warning state should be restored via cleanup guards.
+- **Strict errors** - missing paths, empty folders, out-of-range frames, mixed image sizes, and unsupported dtypes should error rather than guess.
 
 ## Oracle(s)
 
@@ -60,4 +61,4 @@ Keep the public API small while making behavior explicit. Use input validation a
 
 ## Seal
 
-- Sealed at: pending future reliability branch.
+- Sealed at: branch `reliability-first-io`; ground: MATLAB Unit Test and all-you-need-is-trust `check-project`; by: Codex, on 2026-07-05.

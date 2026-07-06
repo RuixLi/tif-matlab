@@ -1,53 +1,70 @@
 function write(fname, im)
-% WRITE Write a single grayscale or RGB image to a TIFF file.
-
-% write single-page 8-bit grayscale or 24-bit RGB TIF image
-% automatically cast data into uint8
-% also see tif.save to save multi-page dataset
-
-% INPUT
-% fname, file name
-% im, a XY matrix for grayscale or a 3d array for RGB
-
-% written by Ruix.Li in Sep, 2020
-
-if ~strcmpi(class(im),'uint8')
-    disp('tif.write: cast image into uint8')
-    im = uint8(imrscale(im,[0,255]));
+% WRITE Write a single uint8 grayscale or RGB image to a TIFF file.
+%
+% Syntax
+%   tif.write(path, image)
+%
+% Inputs
+%   path - Output path as a char vector or scalar string. If no extension is
+%     supplied, .tif is appended. Existing extensions must be .tif or .tiff.
+%   image - Single uint8 image. Accepted shapes are Y-by-X grayscale or
+%     Y-by-X-by-3 RGB. Data is written without rescaling.
+%
+% Outputs
+%   None.
+%
+% Examples
+%   tif.write("preview.tif", uint8Image);
+%   tif.write("rgb-preview.tif", uint8RgbImage);
+arguments
+    fname {mustBeTextScalar}
+    im {mustBeNonempty}
 end
 
-if ~extwith(fname,'tif')
-    [fa,fb] = fileparts(fname);
-    fname = [fa,filesep,fb,'.tif'];
+if ~isa(im, 'uint8')
+    error('tif:write:ImageClass', 'Image must be uint8; use explicit scaling before calling tif.write.');
 end
 
-imwrite(im,fname)
+if ~(ismatrix(im) || (ndims(im) == 3 && size(im, 3) == 3))
+    error('tif:write:ImageShape', 'Image must be a 2-D grayscale image or an RGB image.');
 end
 
-%%
-function a = extwith(fname,b)
-if b(1) == '.'; b = b(2:end); end
-[~,~,c] = fileparts(fname);
-a = strcmpi(c(2:end),b);
-
+fname = ensureTiffExtension(textToChar(fname));
+ensureParentFolderExists(fname);
+imwrite(im, fname)
 end
 
-function dataOUT = imrscale(dataIN,outRange)
-if nargin == 1
-    outRange = [0, 255];
+function fname = ensureTiffExtension(fname)
+[pathstr, name, ext] = fileparts(fname);
+if isempty(ext)
+    fname = fullfile(pathstr, [name '.tif']);
+elseif ~ismember(lower(ext), {'.tif', '.tiff'})
+    error('tif:write:UnsupportedExtension', 'Output file must use .tif or .tiff extension.');
 end
-nel = min(1e12,numel(dataIN));
-inMin=quantile(dataIN(1:nel),0.01);
-inMax=quantile(dataIN(1:nel),0.99);
+end
 
-if inMin == inMax
-    dataOUT = zeros(size(dataIN));
+function ensureParentFolderExists(fname)
+parentFolder = fileparts(fname);
+if ~isempty(parentFolder) && ~isfolder(parentFolder)
+    error('tif:write:FolderNotFound', 'Output folder does not exist: %s', parentFolder);
+end
+end
+
+function mustBeTextScalar(value)
+if isTextScalar(value)
+    return
+end
+error('tif:write:InvalidPath', 'Path must be char or scalar string.');
+end
+
+function tf = isTextScalar(value)
+tf = (ischar(value) && (isrow(value) || isempty(value))) || (isstring(value) && isscalar(value));
+end
+
+function pathValue = textToChar(value)
+if isstring(value)
+    pathValue = char(value);
 else
-    scaleFactor = (outRange(2)-outRange(1)) / (inMax-inMin);
-    dataOUT=(dataIN - inMin).* scaleFactor + outRange(1);
+    pathValue = value;
 end
-
-dataOUT(dataOUT > outRange(2)) = outRange(2);
-dataOUT(dataOUT < outRange(1)) = outRange(1);
-dataOUT = uint8(dataOUT);
 end
