@@ -1,10 +1,10 @@
 ---
 kind: log
 name: reliability-first io
-status: in-execution
+status: completed
 description: Records the reliability-first I/O branch execution.
 created: "2026-07-05T18:49"
-updated: "2026-07-05T18:56"
+updated: "2026-07-06T00:45"
 ---
 # Reliability-First I/O - Log
 
@@ -38,4 +38,9 @@ updated: "2026-07-05T18:56"
 - Verified `matlab -batch "results = runtests('tests'); assertSuccess(results);"` passed with `test_reliability_io` and `test_structure_alignment`.
 - Verified `$env:PYTHONPATH='D:\code\all-you-need-is-trust\tools\src'; python -m aynit.cli check-project . --format text` reported 11 passes, 0 failures, and 0 warnings.
 
-**Next:** Human review of branch `reliability-first-io`; merge to `main` only after approval.
+### 2026-07-06 - Closed before merge
+
+- User approved merging after the stacked performance and documentation refinements.
+- Marked the reliability log completed.
+
+**Next:** Merge branch `reliability-first-io` to `main` and push.
