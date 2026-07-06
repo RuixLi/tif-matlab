@@ -25,4 +25,10 @@ updated: "2026-07-06T00:00"
 - Added `tests/test_performance_large_data.m`.
 - Verified `matlab -batch "results = runtests('tests/test_performance_large_data.m'); assertSuccess(results);"` failed for the intended reasons: `tif.info` is undefined, and `tif.save` rejects the new BigTIFF name-value options.
 
-**Next:** Implement `tif.info`.
+### 2026-07-06 - Metadata inspection
+
+- Added `src/+tif/info.m`.
+- Added package listing for `tif.info` in `src/+tif/Contents.m`.
+- Verified the focused performance test now passes the `tif.info` and selected-frame tests; only the BigTIFF `tif.save` tests remain red.
+
+**Next:** Implement BigTIFF mode selection in `tif.save`.

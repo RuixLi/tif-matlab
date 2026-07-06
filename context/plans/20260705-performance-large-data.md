@@ -59,7 +59,7 @@ updated: "2026-07-06T00:00"
 
 - [x] Write tests for `tif.info` on a multipage file, `tif.info` on a naturally sorted folder, selected-frame loading, explicit BigTIFF save mode, and automatic BigTIFF upgrade using a tiny test threshold.
 - [x] Run `matlab -batch "results = runtests('tests/test_performance_large_data.m'); assertSuccess(results);"` and verify the new tests fail because `tif.info` and BigTIFF options are not implemented yet.
-- [ ] Commit the failing oracle.
+- [x] Commit the failing oracle.
 
 ### Task 3: Metadata Inspection
 
@@ -67,10 +67,10 @@ updated: "2026-07-06T00:00"
 - Create: `src/+tif/info.m`
 - Modify: `src/+tif/Contents.m`
 
-- [ ] Implement `tif.info(source)` with an `arguments` block accepting `char` and scalar `string` paths.
-- [ ] For files, report `SourceType`, `Path`, `Files`, `FrameCount`, `PagesPerFile`, `ImageSize`, `ImageLength`, `ImageWidth`, `BitsPerSample`, `SamplesPerPixel`, `Class`, `Compression`, `ImageDescription`, `EstimatedStackBytes`, and `IsBigTiff`.
-- [ ] For folders, list `.tif` and `.tiff` files in natural order, report one loadable frame per file, and validate metadata consistency without reading pixel data.
-- [ ] Run the performance test file and verify the `tif.info` tests pass while BigTIFF tests still fail.
+- [x] Implement `tif.info(source)` with an `arguments` block accepting `char` and scalar `string` paths.
+- [x] For files, report `SourceType`, `Path`, `Files`, `FrameCount`, `PagesPerFile`, `ImageSize`, `ImageLength`, `ImageWidth`, `BitsPerSample`, `SamplesPerPixel`, `Class`, `Compression`, `ImageDescription`, `EstimatedStackBytes`, and `IsBigTiff`.
+- [x] For folders, list `.tif` and `.tiff` files in natural order, report one loadable frame per file, and validate metadata consistency without reading pixel data.
+- [x] Run the performance test file and verify the `tif.info` tests pass while BigTIFF tests still fail.
 
 ### Task 4: BigTIFF Save Mode
 
