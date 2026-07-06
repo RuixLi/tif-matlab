@@ -4,17 +4,17 @@ name: current work
 status: active
 description: Lists active and completed efforts with links to their work documents.
 created: "2026-07-05T18:11"
-updated: "2026-07-05T18:56"
+updated: "2026-07-06T00:00"
 ---
 # Jobs
 
 ## Active
 
-- None.
+- **Performance and large-data support** - `active` - Add metadata inspection and semi-automatic BigTIFF save behavior before merge. -> [effort](efforts/20260705-performance-large-data.md) | [plan](plans/20260705-performance-large-data.md) | [log](logs/20260705-performance-large-data.md)
 
 ## Pending
 
-- **Performance and large-data support** - `proposed` - Add inspection and large-stack options after reliability lands. -> [scheme](efforts/20260705-behavior-roadmap.md) | [effort](efforts/20260705-performance-large-data.md)
+- None.
 
 ## Done
 
